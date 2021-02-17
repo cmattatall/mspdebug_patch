@@ -194,27 +194,27 @@ void MSPBSL_PhysicalInterfaceSerialUART::invokeBSL(uint16_t method)
     
 	port->set_option(RESETControl(LOW_SIGNAL));
 	port->set_option(TESTControl(LOW_SIGNAL));
-	this_thread::sleep_for(boost::chrono::milliseconds(10));
+	boost::this_thread::sleep_for(boost::chrono::milliseconds(10));
 	port->set_option(TESTControl(HIGH_SIGNAL));
-	this_thread::sleep_for(boost::chrono::milliseconds(10));
+	boost::this_thread::sleep_for(boost::chrono::milliseconds(10));
 	port->set_option(TESTControl(LOW_SIGNAL));
-	this_thread::sleep_for(boost::chrono::milliseconds(10));
+	boost::this_thread::sleep_for(boost::chrono::milliseconds(10));
 	port->set_option(TESTControl(HIGH_SIGNAL));
-	this_thread::sleep_for(boost::chrono::milliseconds(10));
+	boost::this_thread::sleep_for(boost::chrono::milliseconds(10));
 	if( method == STANDARD_INVOKE )
 	{
 	  port->set_option(RESETControl(HIGH_SIGNAL));
-	  this_thread::sleep_for(boost::chrono::milliseconds(10));
+	  boost::this_thread::sleep_for(boost::chrono::milliseconds(10));
 	  port->set_option(TESTControl(LOW_SIGNAL));
 	}
 	else if ( method == BSL_XXXX_INVOKE )
 	{
 	  port->set_option(TESTControl(LOW_SIGNAL));
-	  this_thread::sleep_for(boost::chrono::milliseconds(10));
+	  boost::this_thread::sleep_for(boost::chrono::milliseconds(10));
 	  port->set_option(RESETControl(HIGH_SIGNAL));
 	}
 	
-	this_thread::sleep_for(boost::chrono::milliseconds(250));
+	boost::this_thread::sleep_for(boost::chrono::milliseconds(250));
 	
 }
 
