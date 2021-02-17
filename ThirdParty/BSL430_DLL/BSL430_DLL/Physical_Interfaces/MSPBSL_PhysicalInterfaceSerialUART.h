@@ -72,6 +72,6 @@ public:
 	virtual std::string getErrorInformation( uint16_t err );
 
 private:
-    boost::asio::io_service io;
+    boost::asio::io_context io;
     boost::asio::serial_port* port;
 };

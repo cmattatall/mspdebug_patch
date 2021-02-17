@@ -73,7 +73,7 @@ namespace TI
 
 		private:
 			std::vector<uint8_t> inputBuffer;
-			boost::asio::io_service* ioService;
+			boost::asio::io_context* ioService;
 			boost::asio::serial_port* port;
 			boost::asio::deadline_timer* timer;
 			ComState comState;
