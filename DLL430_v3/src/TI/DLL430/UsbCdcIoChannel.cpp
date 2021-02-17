@@ -379,7 +379,7 @@ std::string UsbCdcIoChannel::retrieveSerialFromId(const std::string& id)
 
 bool UsbCdcIoChannel::openPort()
 {
-	ioService = new boost::asio::io_service;
+	ioService = new boost::asio::io_context;
 	port = new boost::asio::serial_port(*ioService);
 	timer = new boost::asio::deadline_timer(*ioService);
 
