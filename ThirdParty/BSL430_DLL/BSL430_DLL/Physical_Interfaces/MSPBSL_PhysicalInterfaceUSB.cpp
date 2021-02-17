@@ -38,9 +38,14 @@
 
 #include <pch.h>
 
+#include <boost/thread.hpp>
+
+
 #include "MSPBSL_PhysicalInterfaceUSB.h"
 
-using namespace std;
+//using namespace std;
+using std::string;
+
 using namespace::boost::asio;
 
 //#define MSPBSL_STANDARD_USB_VID 0x2047         // Vendor ID, 0x2047 for Texas Instruments Incorporated (MSP430 Group)
@@ -189,7 +194,7 @@ uint16_t MSPBSL_PhysicalInterfaceUSB::RX_Bytes( uint8_t* buf, uint16_t numBytes 
 			return ERROR_READING_DATA; 
 		}
 
-		this_thread::sleep_for(chrono::milliseconds(500));
+		boost::this_thread::sleep_for(boost::chrono::milliseconds(500));
 	}
 
 	return 0;
