@@ -37,6 +37,8 @@
 */
 
 #include <pch.h>
+#include <boost/thread.hpp>
+
 
 #include <MSPBSL_PhysicalInterfaceSerialUART.h>
 #include "MSPBSL_TestResetControl.h"
