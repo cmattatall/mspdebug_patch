@@ -76,6 +76,7 @@ using namespace TI::DLL430;
 //using namespace std;
 
 using std::string;
+using std::stringstream;
 
 using namespace std::placeholders;
 using namespace boost::asio;
@@ -312,7 +313,7 @@ void UsbCdcIoChannel::createCdcPortList(const uint16_t vendorId, const uint16_t 
 	}
 #else
 	stringstream cdcIdStream;
-	cdcIdStream << hex << setfill('0') << "usb:v" << setw(4) << vendorId << "p" << setw(4) << productId;
+	cdcIdStream << std::hex << std::setfill('0') << "usb:v" << std::setw(4) << vendorId << "p" << std::setw(4) << productId;
 
 	path p("/sys/class/tty/");
 	if (exists(p) && is_directory(p))
@@ -378,7 +379,7 @@ std::string UsbCdcIoChannel::retrieveSerialFromId(const std::string& id)
 
 bool UsbCdcIoChannel::openPort()
 {
-	boost::asio::ioService = new boost::asio::io_service;
+	ioService = new boost::asio::io_service;
 	port = new boost::asio::serial_port(*ioService);
 	timer = new boost::asio::deadline_timer(*ioService);
 
@@ -387,7 +388,7 @@ bool UsbCdcIoChannel::openPort()
 		int retry = 5;
 		while (ec && --retry )
 		{
-			this_thread::sleep_for(boost::chrono::milliseconds(5));
+			boost::this_thread::sleep_for(boost::chrono::milliseconds(5));
 			ec = port->open(portInfo.path, ec);
 		}
 
@@ -412,7 +413,7 @@ void UsbCdcIoChannel::retrieveStatus()
 	{
 		openPort();
 		//Seeing issues on some platforms (eg. Ubuntu) when port is immediately closed again
-		this_thread::sleep_for(boost::chrono::milliseconds(100));
+		boost::this_thread::sleep_for(boost::chrono::milliseconds(100));
 		close();
 	}
 }
