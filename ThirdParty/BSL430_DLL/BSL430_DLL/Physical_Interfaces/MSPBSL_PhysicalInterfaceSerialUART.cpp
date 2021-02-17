@@ -43,6 +43,7 @@
 
 //using namespace std;
 using namespace boost::asio;
+using std::string;
 
 string COM_DESIGNATOR = "COM:";
 string BAUD_DESIGNATOR = "BAUD:";
