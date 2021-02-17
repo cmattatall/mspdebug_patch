@@ -41,7 +41,7 @@
 #include <MSPBSL_PhysicalInterfaceSerialUART.h>
 #include "MSPBSL_TestResetControl.h"
 
-using namespace std;
+//using namespace std;
 using namespace boost::asio;
 
 string COM_DESIGNATOR = "COM:";
@@ -193,27 +193,27 @@ void MSPBSL_PhysicalInterfaceSerialUART::invokeBSL(uint16_t method)
     
 	port->set_option(RESETControl(LOW_SIGNAL));
 	port->set_option(TESTControl(LOW_SIGNAL));
-	this_thread::sleep_for(chrono::milliseconds(10));
+	this_thread::sleep_for(boost::chrono::milliseconds(10));
 	port->set_option(TESTControl(HIGH_SIGNAL));
-	this_thread::sleep_for(chrono::milliseconds(10));
+	this_thread::sleep_for(boost::chrono::milliseconds(10));
 	port->set_option(TESTControl(LOW_SIGNAL));
-	this_thread::sleep_for(chrono::milliseconds(10));
+	this_thread::sleep_for(boost::chrono::milliseconds(10));
 	port->set_option(TESTControl(HIGH_SIGNAL));
-	this_thread::sleep_for(chrono::milliseconds(10));
+	this_thread::sleep_for(boost::chrono::milliseconds(10));
 	if( method == STANDARD_INVOKE )
 	{
 	  port->set_option(RESETControl(HIGH_SIGNAL));
-	  this_thread::sleep_for(chrono::milliseconds(10));
+	  this_thread::sleep_for(boost::chrono::milliseconds(10));
 	  port->set_option(TESTControl(LOW_SIGNAL));
 	}
 	else if ( method == BSL_XXXX_INVOKE )
 	{
 	  port->set_option(TESTControl(LOW_SIGNAL));
-	  this_thread::sleep_for(chrono::milliseconds(10));
+	  this_thread::sleep_for(boost::chrono::milliseconds(10));
 	  port->set_option(RESETControl(HIGH_SIGNAL));
 	}
 	
-	this_thread::sleep_for(chrono::milliseconds(250));
+	this_thread::sleep_for(boost::chrono::milliseconds(250));
 	
 }
 
